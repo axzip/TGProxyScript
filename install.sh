@@ -67,8 +67,8 @@ After=network.target
 [Service]
 Type=simple
 PIDFile=/run/mtproxy.pid
-WorkingDirectory=/root/MTProxy
-ExecStart=/root/MTProxy/mtproto-proxy -u nobody -H $port $natInfo -S $secret --aes-pwd /root/MTProxy/proxy-secret /root/MTProxy/proxy-multi.conf -D "$domain" --cpu-threads 16 --io-threads 16
+WorkingDirectory=$base_dir/MTProxy
+ExecStart=$base_dir/mtproto-proxy -u nobody -H $port $natInfo -S $secret --aes-pwd $base_dir/proxy-secret $base_dir/proxy-multi.conf -D "$domain" --cpu-threads 16 --io-threads 16
 ExecReload=/bin/sh -c "/bin/kill -s HUP \$(/bin/cat /run/mtproxy.pid)"
 ExecStop=/bin/sh -c "/bin/kill -s TERM \$(/bin/cat /run/mtproxy.pid)"
 
