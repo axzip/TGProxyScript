@@ -51,15 +51,15 @@ fi
 
 
 secret=`head -c 16 /dev/urandom | xxd -ps`
-
-cat >> crontabtmp  <<EOF
+rm -rf crontabtmp
+cat > crontabtmp  <<EOF
 0 0 * * * curl -s https://core.telegram.org/getProxyConfig -o $base_dir/MTProxy/proxy-multi.conf
 EOF
 crontab ./crontabtmp
 rm ./crontabtmp
 systemctl restart cron
-
-cat >> /lib/systemd/system/MTProxy.service <<EOF
+rm -rf /lib/systemd/system/MTProxy.service
+cat > /lib/systemd/system/MTProxy.service <<EOF
 [Unit]
 Description=mtproxy
 After=network.target
