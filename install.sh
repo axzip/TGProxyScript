@@ -58,7 +58,7 @@ EOF
 crontab ./crontabtmp
 rm ./crontabtmp
 systemctl restart cron
-rm -rf /lib/systemd/system/MTProxy.service
+
 cat > /lib/systemd/system/MTProxy.service <<EOF
 [Unit]
 Description=mtproxy
